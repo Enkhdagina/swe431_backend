@@ -18,6 +18,10 @@ export class UserService {
     }
   }
 
+  async findById(id: string) {
+    return await this.model.findById(id);
+  }
+
   async findAll() {
     return await this.model.find();
   }

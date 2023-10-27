@@ -12,7 +12,7 @@ export type OrderDocument = Document & Order;
 @Schema({ timestamps: true })
 export class Order {
   @Prop({ type: Product })
-  product: Product;
+  product: string;
   @Prop()
   quantity: number;
   @Prop()
@@ -20,7 +20,9 @@ export class Order {
   @Prop({ enum: OrderType })
   type: OrderType;
   @Prop({ type: Payment })
-  payment: Payment;
+  payment: string;
+  @Prop({})
+  user: string;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

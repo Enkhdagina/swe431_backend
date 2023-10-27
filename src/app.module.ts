@@ -12,22 +12,19 @@ import { ProductModule } from './resource/product/product.module';
 
 @Module({
   imports: [
-
     ConfigModule.forRoot({
       isGlobal: true,
       envFilePath: '.env',
     }),
 
     MongooseModule.forRoot(appConfig().dbUrl, {
-      
       dbName: appConfig().dbName,
     }),
     AuthModule,
     UserModule,
     OrderModule,
     PaymentModule,
-    ProductModule
+    ProductModule,
   ],
-
 })
 export class AppModule {}

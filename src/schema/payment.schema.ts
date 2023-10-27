@@ -9,20 +9,20 @@ export type PaymentDocument = Document & Payment;
 
 @Schema({ timestamps: true })
 export class Payment {
-   
-    @Prop({enum: PaymentType})
-	type: PaymentType;
-    @Prop()
-	bank: string
-    @Prop()
-	accountNumber: number;
-    @Prop()
-	accountName: string;
-    @Prop()
-    name: string
-    @Prop()
-	text: string
-
+  @Prop({ enum: PaymentType })
+  type: PaymentType;
+  @Prop()
+  bank: string;
+  @Prop()
+  accountNumber: number;
+  @Prop()
+  accountName: string;
+  @Prop()
+  name: string;
+  @Prop()
+  text: string;
+  @Prop({ type: User })
+  user: string;
 }
 
 export const PaymentSchema = SchemaFactory.createForClass(Payment);
