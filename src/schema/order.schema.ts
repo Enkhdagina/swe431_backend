@@ -1,0 +1,26 @@
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+
+import mongoose, { Document } from 'mongoose';
+
+import { User } from './user.schema';
+import { OrderType } from 'src/util/enum';
+import { Product } from './product.schema';
+import { Payment } from './payment.schema';
+
+export type OrderDocument = Document & Order;
+
+@Schema({ timestamps: true })
+export class Order {
+  @Prop({ type: Product })
+  product: Product;
+  @Prop()
+  quantity: number;
+  @Prop()
+  address: string;
+  @Prop({ enum: OrderType })
+  type: OrderType;
+  @Prop({ type: Payment })
+  payment: Payment;
+}
+
+export const OrderSchema = SchemaFactory.createForClass(Order);
