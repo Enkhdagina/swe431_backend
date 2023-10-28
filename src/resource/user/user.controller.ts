@@ -2,18 +2,21 @@ import {
   Body,
   Controller,
   Get,
+  Param,
   Post,
+  Put,
   Request,
   UseGuards,
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { UserDto } from './user.dto';
-import { AuthGuard } from '@nestjs/passport';
+import { AuthGuard } from 'src/guard/auth.guard';
+
 
 @Controller('user')
 @ApiTags('User')
-// @UseGuards(AuthGuard)
+@UseGuards(AuthGuard)
 export class UserCOntroller {
   constructor(private service: UserService) {}
   @Post()
@@ -29,5 +32,15 @@ export class UserCOntroller {
   @Get('/me')
   me(@Request() { user }) {
     return this.service.findById(user['id']);
+  }
+  @Get('/basket')
+  basket(@Request() { user }) {
+    return this.service.findBasket(user['id']);
+  }
+
+  @Get("basket/:id")
+  updateBasket(@Param('id') id: string, @Request() {user}) {
+
+    return this.service.updateBasket(id, user['_id'])
   }
 }

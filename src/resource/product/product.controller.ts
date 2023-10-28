@@ -1,7 +1,8 @@
-import { Body, Controller, Delete, Get, Param, Post } from '@nestjs/common';
+import { Body, Controller, Delete, Get, Param, Post, Request, UseGuards } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { ProductService } from './product.service';
 import { ProductDto } from './product.dto';
+import { AuthGuard } from 'src/guard/auth.guard';
 
 @Controller('product')
 @ApiTags('Product')
@@ -11,6 +12,14 @@ export class ProductController {
   @Post()
   create(@Body() dto: ProductDto) {
     return this.service.create(dto);
+  }
+
+  @UseGuards(AuthGuard)
+  @Post('/basket')
+  findMany(@Request() {user}) {
+  
+    
+    return this.service.findMany(user['basket'])
   }
 
   @Get()

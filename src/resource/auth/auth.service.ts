@@ -19,6 +19,10 @@ export class AuthService {
   ) {}
   async signIn(username, pass) {
     const user = await this.usersService.findOne(username);
+    if(!user) {
+      
+      throw new UnauthorizedException();
+    }
     if (user?.password !== pass) {
       throw new UnauthorizedException();
     }
@@ -41,14 +45,15 @@ export class AuthService {
       this.paymentService.create({
         type: type,
         user: user.id,
-        bank: '',
-        accountNumber: 0,
-        accountName: '',
+        bank: 'Хаан банк',
+        accountNumber: 1234432112344321,
+        accountName: 'Dagina',
         name: '',
         text: '',
+        img: ''
       });
     });
-    const payload = { email: user.email };
+    const payload = { username: user.username };
     return {
       access_token: await this.jwtService.signAsync(payload),
     };

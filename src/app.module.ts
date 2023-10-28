@@ -1,6 +1,5 @@
 import { Module } from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+
 import appConfig from './config/app.config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
@@ -9,6 +8,7 @@ import { UserModule } from './resource/user/user.module';
 import { OrderModule } from './resource/order/order.module';
 import { PaymentModule } from './resource/payment/payment.module';
 import { ProductModule } from './resource/product/product.module';
+
 
 @Module({
   imports: [
@@ -25,6 +25,9 @@ import { ProductModule } from './resource/product/product.module';
     OrderModule,
     PaymentModule,
     ProductModule,
+    
   ],
+ 
+  
 })
 export class AppModule {}

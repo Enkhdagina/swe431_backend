@@ -9,6 +9,9 @@ export class PaymentDto {
   @IsString()
   @ApiProperty()
   bank: string;
+
+  @ApiProperty()
+  img: string;
   @IsNumber()
   @ApiProperty()
   accountNumber: number;

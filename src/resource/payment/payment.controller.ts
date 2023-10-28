@@ -11,7 +11,8 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { PaymentService } from './payment.service';
 import { PaymentDto } from './payment.dto';
-import { AuthGuard } from '@nestjs/passport';
+import { AuthGuard } from 'src/guard/auth.guard';
+
 
 @Controller('payment')
 @ApiTags('Payment')
@@ -31,7 +32,8 @@ export class PaymentController {
   @Get('user')
   @UseGuards(AuthGuard)
   findUser(@Request() { user }) {
-    return this.service.findUser(user['id']);
+ 
+    return this.service.findUser(user['_id']);
   }
   @Delete()
   deleteAll() {

@@ -22,10 +22,12 @@ import { Payment, PaymentSchema } from 'src/schema';
     MongooseModule.forFeature([{ name: Payment.name, schema: PaymentSchema }]),
     JwtModule.register({
       signOptions: { expiresIn: '7d' },
-      secretOrPrivateKey: appConfig().appSecret,
+      // secretOrPrivateKey: appConfig().appSecret,
+      secret: appConfig().appSecret
     }),
   ],
   controllers: [AuthController],
   providers: [AuthService, PaymentService],
+  exports: [AuthService]
 })
 export class AuthModule {}

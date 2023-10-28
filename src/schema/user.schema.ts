@@ -15,6 +15,9 @@ export class User {
 
   @Prop()
   password: string;
+
+  @Prop({type:Array<string>, ref:'products'})
+  basket:  string[]
 }
 
 export const UserSchema = SchemaFactory.createForClass(User);

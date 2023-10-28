@@ -17,28 +17,35 @@ export class PaymentService {
         case PaymentType.CASH:
           dto.name = 'Бэлнээр төлөх';
           dto.text = 'Бэлэн мөнгөөр төлөх';
+          dto.img = 'v1698257440/xe62wmaaavljiinel7rg.svg';
           break;
         case PaymentType.TRANSFER:
           (dto.name = 'Дансаар шилжүүлэх'),
             (dto.text = 'Манай данс руу шилжүүлэх');
+          dto.img = 'v1698257440/immnxp1uaubnnmd3dqmx.svg';
           break;
         case PaymentType.INTERNET:
           (dto.name = 'Интернет банк'),
             (dto.text = 'Интернет пин код шаардлагатай');
+          dto.img = 'v1698257440/afj6nnj5uquwdn0fcng2.svg';
           break;
         case PaymentType.QPAY:
           (dto.name = 'QPAY'), (dto.text = 'QPAY-ээр төлбөрөө төлөх');
+          dto.img = 'v1698257439/z2lgyvghpbkapztknthf.svg';
           break;
       }
       let payment = await this.model.findOne({
         type: dto.type,
         user: dto.user,
       });
+  
       if (payment) {
-        return await this.model.findOneAndUpdate(
-          { user: dto.user, type: dto.user },
+        let res =  await this.model.findOneAndUpdate(
+          { user: dto.user, type: dto.user, img: dto.img },
           dto,
         );
+       
+        return res
       }
 
       return await this.model.create(dto);
@@ -47,6 +54,10 @@ export class PaymentService {
     }
   }
 
+  async findOne(type: PaymentType) {
+    return await this.model.findOne({ type });
+  }
+ 
   async findAll() {
     return await this.model.find();
   }

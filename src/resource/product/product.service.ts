@@ -1,6 +1,6 @@
 import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
+import mongoose, { Model } from 'mongoose';
 import { Product, ProductDocument } from 'src/schema';
 import { ProductDto } from './product.dto';
 
@@ -17,12 +17,25 @@ export class ProductService {
       throw new HttpException(error, 500);
     }
   }
+  
+  async findMany(dto: string[]) {
+    try {
+      let arr = dto.map((d) => new mongoose.Types.ObjectId(d))
+
+      let res = await this.model.find({_id: {$in: arr}})
+
+      return res
+    } catch (error) {
+      
+      throw new HttpException(error, 500);
+    }
+  }
 
   async findAll() {
     return await this.model.find();
   }
 
-  async findById(id: string) {
+  async findById(id: string ) {
     return await this.model.findById(id);
   }
 

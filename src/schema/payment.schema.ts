@@ -21,8 +21,10 @@ export class Payment {
   name: string;
   @Prop()
   text: string;
-  @Prop({ type: User })
+  @Prop()
   user: string;
+  @Prop()
+  img: string;
 }
 
 export const PaymentSchema = SchemaFactory.createForClass(Payment);

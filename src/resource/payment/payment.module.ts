@@ -8,7 +8,7 @@ import { Payment, PaymentSchema } from 'src/schema';
   imports: [
     MongooseModule.forFeature([{ name: Payment.name, schema: PaymentSchema }]),
   ],
-  // controllers: [PaymentController],
+  controllers: [PaymentController],
   providers: [PaymentService],
   exports: [PaymentService],
 })

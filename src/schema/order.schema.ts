@@ -11,17 +11,17 @@ export type OrderDocument = Document & Order;
 
 @Schema({ timestamps: true })
 export class Order {
-  @Prop({ type: Product })
-  product: string;
+  @Prop({type: mongoose.Schema.ObjectId , ref: 'Product'})
+  product: string ;
   @Prop()
   quantity: number;
   @Prop()
   address: string;
   @Prop({ enum: OrderType })
   type: OrderType;
-  @Prop({ type: Payment })
-  payment: string;
-  @Prop({})
+  @Prop({type: mongoose.Schema.ObjectId, ref: 'Payment'})
+  payment: string ;
+  @Prop({type: mongoose.Schema.ObjectId, ref: 'User'})
   user: string;
 }
 
