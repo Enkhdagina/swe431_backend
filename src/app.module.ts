@@ -5,7 +5,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './resource/auth/auth.module';
 import { UserModule } from './resource/user/user.module';
-import { OrderModule } from './resource/order/order.module';
+// import { OrderModule } from './resource/order/order.module';
 import { PaymentModule } from './resource/payment/payment.module';
 import { ProductModule } from './resource/product/product.module';
 
@@ -22,7 +22,7 @@ import { ProductModule } from './resource/product/product.module';
     }),
     AuthModule,
     UserModule,
-    OrderModule,
+    // OrderModule,
     PaymentModule,
     ProductModule,
     

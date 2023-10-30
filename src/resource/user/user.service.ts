@@ -32,6 +32,7 @@ export class UserService {
    
     if(!product) throw new HttpException('Олдсонгүй', 404)
     let u = await this.model.findById(user)
+  
   let basket = u.basket.includes(id)
 
   if(basket) {
