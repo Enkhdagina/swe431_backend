@@ -1,9 +1,12 @@
-import { Body, Controller, Post, UseGuards, Request, Delete, Get, Param } from '@nestjs/common';
-import { AuthGuard } from '@nestjs/passport';
-import { OrderDto } from './order.dto';
+import { Body, Controller, Delete, Get, Param, Post, Request, UseGuards } from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
 import { OrderService } from './order.service';
+import { OrderDto } from './order.dto';
+import { AuthGuard } from 'src/guard/auth.guard';
+
 
 @Controller('order')
+@ApiTags("Order")
 export class OrderController {
     constructor(private service: OrderService) {
         

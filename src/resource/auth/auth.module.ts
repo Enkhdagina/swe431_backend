@@ -1,4 +1,4 @@
-import { Module } from '@nestjs/common';
+import { Module , Global} from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
 import { AuthController } from './auth.controller';
 import { AuthService } from './auth.service';
@@ -11,6 +11,7 @@ import { PaymentService } from '../payment/payment.service';
 import { PaymentModule } from '../payment/payment.module';
 import { Payment, PaymentSchema } from 'src/schema';
 
+@Global()
 @Module({
   imports: [
     UserModule,
