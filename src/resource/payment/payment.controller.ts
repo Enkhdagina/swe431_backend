@@ -15,6 +15,9 @@ import { AuthGuard } from 'src/guard/auth.guard';
 
 
 @Controller('payment')
+
+
+
 @ApiTags('Payment')
 export class PaymentController {
   constructor(private service: PaymentService) {}
