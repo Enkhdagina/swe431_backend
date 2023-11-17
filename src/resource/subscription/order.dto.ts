@@ -1,6 +1,6 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsEnum, IsString } from 'class-validator';
-import { OrderType, PaymentType } from 'src/util/enum';
+import { OrderPaymentType, OrderStatus, OrderType, PaymentType } from 'src/util/enum';
 
 export class OrderDto {
   @ApiProperty()
@@ -15,6 +15,12 @@ export class OrderDto {
   @ApiProperty()
   @IsEnum(OrderType)
   type: OrderType;
+  @ApiProperty({ default: OrderStatus.QUEUE })
+
+  status: OrderStatus;
+  @ApiProperty({ default: OrderPaymentType.UNPAID })
+
+  orderPayment: OrderPaymentType;
   @ApiProperty()
   @IsEnum(PaymentType)
   payment: PaymentType;

@@ -3,7 +3,7 @@ import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import mongoose, { Document } from 'mongoose';
 
 import { User } from './user.schema';
-import { OrderType } from 'src/util/enum';
+import { OrderPaymentType, OrderStatus, OrderType } from 'src/util/enum';
 import { Product } from './product.schema';
 import { Payment } from './payment.schema';
 
@@ -23,6 +23,10 @@ export class Order {
   payment: string ;
   @Prop({type: mongoose.Schema.ObjectId, ref: 'User'})
   user: string;
+  @Prop({ enum: OrderStatus })
+  status: OrderStatus;
+  @Prop({ enum: OrderPaymentType })
+  orderPayment: OrderPaymentType;
 }
 
 export const OrderSchema = SchemaFactory.createForClass(Order);

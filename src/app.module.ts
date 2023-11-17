@@ -25,9 +25,9 @@ import { ProductModule } from './resource/product/product.module';
     OrderModule,
     PaymentModule,
     ProductModule,
-    
+
   ],
- 
-  
+
+
 })
-export class AppModule {}
+export class AppModule { }

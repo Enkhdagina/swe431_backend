@@ -9,12 +9,12 @@ import { AuthGuard } from 'src/guard/auth.guard';
 @ApiTags("Order")
 export class OrderController {
     constructor(private service: OrderService) {
-        
+
     }
 
     @UseGuards(AuthGuard)
     @Post()
-    create(@Body() dto: OrderDto, @Request() {user}) {
+    create(@Body() dto: OrderDto, @Request() { user }) {
         return this.service.create(dto, user['_id'])
     }
 
@@ -25,15 +25,15 @@ export class OrderController {
     }
 
     @Get(':id')
-    findOne(@Param('id') id: string ) {
+    findOne(@Param('id') id: string) {
         return this.service.findOne(id)
-    } 
+    }
     @UseGuards(AuthGuard)
     @Post('user')
-    findUser(@Request() {user}) {
+    findUser(@Request() { user }) {
         return this.service.findUser(user['_id'])
-    } 
-
+    }
+    
 
     @Delete()
     deleteAll() {
@@ -42,12 +42,12 @@ export class OrderController {
 
 
     @Delete(':id')
-    deleteOne(@Param('id') id:string) {
+    deleteOne(@Param('id') id: string) {
         return this.service.deleteOne(id)
     }
-@UseGuards(AuthGuard)
+    @UseGuards(AuthGuard)
     @Delete('user')
-    deleteUser(@Request() {user}) {
+    deleteUser(@Request() { user }) {
         return this.service.deleteUser(user['_id'])
     }
 }

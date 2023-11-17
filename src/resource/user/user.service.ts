@@ -33,7 +33,8 @@ export class UserService {
     if(!product) throw new HttpException('Олдсонгүй', 404)
     let u = await this.model.findById(user)
   
-  let basket = u.basket.includes(id)
+  let basket =  u.basket?.includes(id)
+  
 
   if(basket) {
     let baskets = u.basket.filter((b) => b != id)
@@ -48,6 +49,13 @@ export class UserService {
   async findBasket(user: string) {
     try {
       return (await this.model.findById(user)).basket
+    } catch (error) {
+      
+    }
+  }
+  async deleteAll() {
+    try {
+      return this.model.deleteMany()
     } catch (error) {
       
     }

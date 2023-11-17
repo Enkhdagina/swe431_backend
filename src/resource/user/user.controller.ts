@@ -7,6 +7,7 @@ import {
   Put,
   Request,
   UseGuards,
+  Delete
 } from '@nestjs/common';
 import { ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
@@ -20,8 +21,8 @@ import { AuthGuard } from 'src/guard/auth.guard';
 export class UserCOntroller {
   constructor(private service: UserService) {}
   @Post()
-  create(@Body() dto: UserDto) {
-    return this.service.create(dto);
+create(@Body() dto: UserDto) {
+    return this.service.create(dto); 
   }
 
   @Get()
@@ -42,5 +43,9 @@ export class UserCOntroller {
   updateBasket(@Param('id') id: string, @Request() {user}) {
 
     return this.service.updateBasket(id, user['_id'])
+  }
+  @Delete()
+  deleteAll() {
+    return this.service.deleteAll()
   }
 }

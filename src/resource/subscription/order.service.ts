@@ -4,6 +4,7 @@ import { Model } from 'mongoose';
 import { Order, OrderDocument } from 'src/schema';
 import { OrderDto } from './order.dto';
 import { PaymentService } from '../payment/payment.service';
+import { OrderPaymentType, OrderStatus } from 'src/util/enum';
 
 @Injectable()
 export class OrderService {
@@ -14,6 +15,8 @@ export class OrderService {
 
   async create(dto: OrderDto, user: string) {
     dto.user = user;
+    dto.status = OrderStatus.QUEUE
+    dto.orderPayment = OrderPaymentType.UNPAID
     let payment = await this.paymentService.findOne(dto.payment);
     return await this.model.create({
       ...dto,
