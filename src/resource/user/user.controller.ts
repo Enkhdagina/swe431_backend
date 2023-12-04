@@ -8,7 +8,7 @@ import {
   Request,
   UseGuards,
 } from '@nestjs/common';
-import { ApiTags } from '@nestjs/swagger';
+import { ApiBasicAuth, ApiTags } from '@nestjs/swagger';
 import { UserService } from './user.service';
 import { UserDto } from './user.dto';
 import { AuthGuard } from 'src/guard/auth.guard';
@@ -17,6 +17,7 @@ import { AuthGuard } from 'src/guard/auth.guard';
 @Controller('user')
 @ApiTags('User')
 @UseGuards(AuthGuard)
+@ApiBasicAuth('access-token')
 export class UserCOntroller {
   constructor(private service: UserService) {}
   @Post()

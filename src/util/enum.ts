@@ -1,10 +1,10 @@
 export enum OrderType {
-  HAND,
-  DOOR,
+  HAND = 'HAND',
+  DOOR = 'DOOR',
 }
 export enum PaymentType {
-  TRANSFER,
-  INTERNET,
-  QPAY,
-  CASH,
+  TRANSFER = 'TRANSFER',
+  INTERNET = 'INTERNET',
+  QPAY = 'QPAY',
+  CASH = 'CASH',
 }
