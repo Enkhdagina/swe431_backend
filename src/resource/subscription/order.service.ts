@@ -25,7 +25,7 @@ export class OrderService {
   }
 
   async findAll() {
-    return await this.model.find();
+    return await this.model.find().populate('product').populate('user');
   }
 
   async findOne(id: string) {
